@@ -1,4 +1,5 @@
 import {CarProps, FilterProps} from "@types";
+import {mockCars} from "@constants";
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
     const basePricePerDay = 50;
@@ -32,6 +33,14 @@ export const deleteSearchParams = (type: string) => {
 export async function fetchCars(filters: FilterProps) {
     const {manufacturer, year, model, limit, fuel} = filters;
 
+    if (!process.env.NEXT_PUBLIC_RAPID_API_KEY) {
+        const has = (value: string, query?: string) => !query || value.toLowerCase().includes(query.toLowerCase());
+        return mockCars
+            .filter((car) => has(car.make, manufacturer) && has(car.model, model) && has(car.fuel_type, fuel)
+                && (!year || car.year === Number(year)))
+            .slice(0, Number(limit) || 10);
+    }
+
     const headers: HeadersInit = {
         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
         "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
@@ -48,6 +57,8 @@ export async function fetchCars(filters: FilterProps) {
 }
 //key: hrjavascript-mastery
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+    if (!process.env.NEXT_PUBLIC_IMAGIN_API_KEY) return "/hero.png";
+
     const url = new URL("https://cdn.imagin.studio/getimage");
     const {make, model, year} = car;
 

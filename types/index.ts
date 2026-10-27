@@ -24,7 +24,7 @@ export interface FilterProps {
 }
 
 export interface HomeProps {
-    searchParams: FilterProps;
+    searchParams: Promise<FilterProps>;
 }
 
 export interface CarCardProps {

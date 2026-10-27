@@ -3,7 +3,8 @@ import {HomeProps} from "@types";
 import {fuels, yearsOfProduction} from "@constants";
 import {CarCard, ShowMore, SearchBar, CustomFilter, Hero} from "@components";
 
-export default async function Home({searchParams}: HomeProps) {
+export default async function Home(props: HomeProps) {
+    const searchParams = await props.searchParams;
     const allCars = await fetchCars({
         manufacturer: searchParams.manufacturer || "",
         year: searchParams.year || 2022,
@@ -37,7 +38,7 @@ export default async function Home({searchParams}: HomeProps) {
                     <section>
                         <div className='home__cars-wrapper'>
                             {allCars?.map((car) => (
-                                <CarCard car={car}/>
+                                <CarCard key={`${car.make}-${car.model}-${car.year}`} car={car}/>
                             ))}
                         </div>
 

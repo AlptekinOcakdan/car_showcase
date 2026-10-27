@@ -20,7 +20,7 @@ const SearchManufacturer = ({manufacturer, setManufacturer}: SearchManufacturerP
 
     return (
         <div className='search-manufacturer'>
-            <Combobox value={manufacturer} onChange={setManufacturer}>
+            <Combobox value={manufacturer} onChange={(value) => setManufacturer(value ?? "")}>
                 <div className='relative w-full'>
                     <Combobox.Button className='absolute top-[14px]'>
                         <Image src='/car-logo.svg' width={20} height={20} className='ml-4' alt='car logo'/>
@@ -32,7 +32,7 @@ const SearchManufacturer = ({manufacturer, setManufacturer}: SearchManufacturerP
                     <Transition as={Fragment} leave='transition ease-in duration-100' leaveFrom='opacity-100'
                                 leaveTo='opacity-0' afterLeave={() => setQuery("")}>
                         <Combobox.Options
-                            className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'
+                            className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden sm:text-sm'
                             static>
                             {filteredManufacturers.length === 0 && query !== "" ? (
                                 <Combobox.Option value={query} className='search-manufacturer__option'>

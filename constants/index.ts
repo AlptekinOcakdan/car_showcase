@@ -99,3 +99,29 @@ export const footerLinks = [
         ],
     },
 ];
+
+// Fake data used when NEXT_PUBLIC_RAPID_API_KEY is not set.
+const car = (make: string, model: string, year: number, fuel_type: string, city_mpg: number, highway_mpg: number, transmission: string, drive: string, carClass: string, cylinders: number, displacement: number) =>
+    ({make, model, year, fuel_type, city_mpg, highway_mpg, combination_mpg: Math.round((city_mpg + highway_mpg) / 2), transmission, drive, class: carClass, cylinders, displacement});
+
+export const mockCars = [
+    car("toyota", "corolla", 2022, "gas", 31, 40, "a", "fwd", "compact car", 4, 1.8),
+    car("toyota", "camry", 2022, "gas", 28, 39, "a", "fwd", "midsize car", 4, 2.5),
+    car("honda", "civic", 2022, "gas", 31, 40, "m", "fwd", "compact car", 4, 2.0),
+    car("honda", "accord", 2022, "gas", 29, 37, "a", "fwd", "midsize car", 4, 1.5),
+    car("tesla", "model 3", 2022, "electricity", 138, 126, "a", "rwd", "midsize car", 0, 0),
+    car("tesla", "model y", 2022, "electricity", 127, 117, "a", "awd", "small sport utility vehicle", 0, 0),
+    car("bmw", "330i", 2022, "gas", 26, 36, "a", "rwd", "compact car", 4, 2.0),
+    car("bmw", "i4", 2022, "electricity", 109, 108, "a", "rwd", "midsize car", 0, 0),
+    car("audi", "a4", 2022, "gas", 25, 34, "a", "awd", "compact car", 4, 2.0),
+    car("ford", "mustang", 2022, "gas", 15, 24, "m", "rwd", "subcompact car", 8, 5.0),
+    car("ford", "f-150 lightning", 2022, "electricity", 76, 61, "a", "4wd", "standard pickup truck", 0, 0),
+    car("hyundai", "ioniq 5", 2022, "electricity", 132, 98, "a", "rwd", "small sport utility vehicle", 0, 0),
+    car("volkswagen", "golf", 2022, "gas", 29, 36, "m", "fwd", "compact car", 4, 1.5),
+    car("mazda", "mx-5", 2022, "gas", 26, 34, "m", "rwd", "two seater", 4, 2.0),
+    car("toyota", "rav4", 2021, "gas", 27, 35, "a", "awd", "small sport utility vehicle", 4, 2.5),
+    car("kia", "ev6", 2023, "electricity", 136, 100, "a", "rwd", "small sport utility vehicle", 0, 0),
+    car("mercedes-benz", "c300", 2020, "gas", 23, 33, "a", "rwd", "compact car", 4, 2.0),
+    car("nissan", "leaf", 2019, "electricity", 123, 99, "a", "fwd", "midsize car", 0, 0),
+    car("porsche", "911", 2018, "gas", 20, 26, "m", "rwd", "minicompact car", 6, 3.0),
+];
